@@ -14,23 +14,14 @@ Controller::Controller(
 void Controller::update()
 {
     double temperature = _sensor.get_temperature();
+
+    // argh. all this is getting too weird. I'm going to leave that
+    // bloody company.
     
-    if (temperature < _comfy_low) {
-        _cold.set_state(true);
-        _comfy.set_state(false);
-        _hot.set_state(false);
-        return;
-    }
     if (temperature >= _comfy_low && temperature <= _comfy_high) {
         _cold.set_state(false);
         _comfy.set_state(true);
         _hot.set_state(false);
-        return;
-    }    
-    if (temperature > _comfy_high) {
-        _cold.set_state(false);
-        _comfy.set_state(false);
-        _hot.set_state(true);
         return;
     }    
 }
